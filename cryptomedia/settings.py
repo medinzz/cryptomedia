@@ -54,6 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'graphene_django',
 
+    # cors
+    'corsheaders',
+
     # models
     'users',
 
@@ -65,6 +68,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # CorsMiddleware
+	'corsheaders.middleware.CorsMiddleware', 
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -208,3 +214,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Whitelist for request senders
+CORS_ORIGIN_WHITELIST = [
+	'http://localhost:3000',
+]
