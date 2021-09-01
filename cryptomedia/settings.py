@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
-
+from datetime import timedelta
 import os
 import sys
 import dj_database_url
@@ -95,10 +95,11 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 GRAPHQL_JWT = {
-    'JWT_VERIFY_EXPIRATION': True,
 
-    # optional
-    'JWT_LONG_RUNNING_REFRESH_TOKEN': True,
+    "JWT_VERIFY_EXPIRATION": True,
+    "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
+    "JWT_EXPIRATION_DELTA": timedelta(minutes=5),
+    "JWT_REFRESH_EXPIRATION_DELTA": timedelta(days=7),
 
     'JWT_ALLOW_ANY_CLASSES': [
         'graphql_auth.mutations.Register',
@@ -117,7 +118,7 @@ ROOT_URLCONF = 'cryptomedia.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
