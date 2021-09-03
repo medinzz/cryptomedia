@@ -1,7 +1,15 @@
 import graphene
-
+from users.models import User
 from graphql_auth.schema import UserQuery, MeQuery
 from graphql_auth import mutations
+from graphene_django.types import DjangoObjectType
+
+
+class UserType(DjangoObjectType):
+  
+  class Meta:
+    model = User
+    fields = '__all__'
 
 class Query(
     UserQuery, 

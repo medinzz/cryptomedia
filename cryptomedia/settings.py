@@ -59,6 +59,7 @@ INSTALLED_APPS = [
 
     # models
     'users',
+    'posts',
 
     # GraphQL Auth 
     'graphql_auth',

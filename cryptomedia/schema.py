@@ -1,13 +1,15 @@
 import graphene
-from graphql_schema import users
+from graphql_schema import users, posts
 
 class Query(
     users.Query,
+    posts.Query,
     graphene.ObjectType):
     pass
 
 class Mutation(
-    users.Mutation, 
+    users.Mutation,
+    posts.Mutation, 
     graphene.ObjectType):
     pass
 
